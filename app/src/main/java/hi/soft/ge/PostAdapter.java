@@ -1,5 +1,6 @@
 package hi.soft.ge;
 
+import android.annotation.SuppressLint;
 import android.net.Uri;
 import android.os.Build;
 import android.support.v7.widget.RecyclerView;
@@ -16,6 +17,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.facebook.share.model.ShareLinkContent;
+import com.facebook.share.model.SharePhoto;
+import com.facebook.share.model.SharePhotoContent;
 import com.facebook.share.widget.ShareButton;
 import com.koushikdutta.ion.Ion;
 
@@ -33,13 +36,13 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
     }
 
     @Override
-    public ViewHolder onCreateViewHolder(ViewGroup parent, int i) {
+    public PostAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int i) {
         View view=LayoutInflater.from(parent.getContext()).inflate(R.layout.news_row, parent, false);
         return new ViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, int i) {
+    public void onBindViewHolder(PostAdapter.ViewHolder holder, int i) {
         String link="<a href=http://soft.ge/?p="+softge.get(i).getId()+">"+softge.get(i).getTitle()+"</a>";
 
         holder.title.setMovementMethod(LinkMovementMethod.getInstance());
@@ -63,6 +66,8 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
         holder.title.setText(s);
         ShareLinkContent content = new ShareLinkContent.Builder()
                 .setContentUrl(Uri.parse("http://soft.ge/?p="+softge.get(i).getId()))
+                .setContentTitle(holder.title.getText().toString())
+                .setImageUrl(Uri.parse(softge.get(i).getImage()))
                 .build();
         holder.date.setText(softge.get(i).getDate());
         holder.fbshare.setShareContent(content);
@@ -72,6 +77,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
             .load(softge.get(i).getImage());
     }
 
+    @SuppressLint("ParcelCreator")
     private class URLSpanline_none extends URLSpan {
         public URLSpanline_none(String url) {
             super(url);
