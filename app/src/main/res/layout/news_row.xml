@@ -52,7 +52,7 @@
             android:background="#004478"
             android:textColor="#FFFFFF"
             />
-        <ge.soft.hi.softge.StatusPanel
+        <hi.soft.ge.StatusPanel
             android:id="@+id/statusPanel"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

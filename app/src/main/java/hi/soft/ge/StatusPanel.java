@@ -1,4 +1,4 @@
-package ge.soft.hi.softge;
+package hi.soft.ge;
 
 import android.content.Context;
 import android.util.AttributeSet;

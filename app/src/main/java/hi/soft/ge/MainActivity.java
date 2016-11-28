@@ -1,4 +1,4 @@
-package ge.soft.hi.softge;
+package hi.soft.ge;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
